@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problems Form</title>
+    <link rel="stylesheet" href="Styles/employeeProblem.css" />
+  </head>
+  <body>
+    <div class="header">
+      <img src="logo.webp" alt="جامعة كفر الشيخ" class="headerImg" />
+    </div>
+    <div class="container">
+      <h1 style="text-align: center">
+        <span
+          style="
+            background: -webkit-linear-gradient(
+              right,
+              #1778c2,
+              #1067aa,
+              #42a4f0,
+              #1778c2
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          تقديم شكوى
+        </span>
+      </h1>
+
+      <form action="#" class="form">
+        <div class="form-row">
+          <div class="input-data">
+            <input
+              class="d-npt"
+              type="text"
+              required
+              id="tb1"
+              pattern="[A-Za-z\u0600-\u06FF\s]+"
+            />
+            <div class="underline"></div>
+            <label class="d-lbl" for="">اسم الموظف</label>
+          </div>
+          <select
+            class="form-select"
+            required
+            style="background-color: #ffffff"
+          >
+            <option value="" disabled selected>الكليه او الإداره</option>
+            <optgroup label="الكليات العمليه و الهندسية">
+              <option value="1">كلية الزراعة</option>
+              <option value="2">كلية العلوم</option>
+              <option value="3">كلية الحاسبات و المعلومات</option>
+              <option value="4">كلية الذكاء الإصطناعي</option>
+              <option value="5">كلية الهندسة</option>
+              <option value="6">كلية الثروة السمكية</option>
+              <option value="7">معهد علوم تكنولوجيا النانو</option>
+            </optgroup>
+            <optgroup label="الكليات الطبية">
+              <option value="8">كلية الطب البيطري</option>
+              <option value="9">كلية الطب البشري</option>
+              <option value="10">كلية العلاج الطبيعي</option>
+              <option value="11">المعهد الفني للتمريض</option>
+              <option value="12">كلية الصيدلة</option>
+              <option value="13">كلية التمريض</option>
+              <option value="14">كلية طب وجراحة الفم والأسنان</option>
+            </optgroup>
+            <optgroup label="الكليات الإنسانية والتربوية والإدارية">
+              <option value="15">كلية التربية</option>
+              <option value="16">كلية التجارة</option>
+              <option value="17">كلية التربية الرياضية</option>
+              <option value="18">كلية الحقوق</option>
+              <option value="19">كلية الآداب</option>
+              <option value="20">كلية التربية النوعية</option>
+              <option value="21">كلية الألسن</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="input-data">
+            <input
+              class="d-npt"
+              type="text"
+              required
+              id="tb2"
+              pattern="[0-9]{14}"
+            />
+            <div class="underline"></div>
+            <label class="d-lbl" for="">الرقم القومي</label>
+          </div>
+          <div class="input-data">
+            <input
+              class="d-npt"
+              type="text"
+              required
+              id="tb3"
+              pattern="[0-9]+"
+            />
+            <div class="underline"></div>
+            <label class="d-lbl" for="">رقم الهاتف</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-data textarea">
+            <textarea
+              class="ttextarea"
+              rows="8"
+              cols="80"
+              required
+              style="font-size: 15px"
+              id="tb4"
+              pattern=".*"
+            ></textarea>
+            <br />
+            <div class="underline"></div>
+            <label class="d-lbl" for="">ما هي مشكلتك ؟</label>
+            <br />
+            <div class="form-row submit-btn">
+              <div class="input-data" id="saveBtn">
+                <div class="inner"></div>
+                <input class="d-npt" type="submit" value="حفظ" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="follow-up">
+        <span class="underline-text" onclick="openFollowUpPopup()"
+          >متابعة شكوى</span
+        >
+      </div>
+    </div>
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>تفاصيل الشكوى</h2>
+        <p>رقم الشكوي: <span id="problem-number">1234</span></p>
+        <p>حالة الشكوى: <span id="problem-status">قيد المراجعة</span></p>
+        <br />
+        <p>يرجى الأحتفاظ برقم الشكوى لمتابعه الحاله لاحقا</p>
+      </div>
+    </div>
+
+    <div id="follow-up-popup" class="popup">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closeFollowUpPopup()">&times;</span>
+        <h2>متابعة الشكوى</h2>
+        <input
+          type="text"
+          id="problem-id-input"
+          placeholder="أدخل رقم الشكوى"
+          style="
+            margin-top: 5px;
+            padding-right: 3px;
+            border-radius: 3px;
+            border-color: #61616138;
+          "
+        />
+        <br /><br />
+        <button
+          onclick="checkProblemStatus()"
+          style="
+            height: 28px;
+            width: 50px;
+            /* background: -webkit-linear-gradient(
+              right,
+              #1778c2,
+              #1067aa,
+              #64b2ee,
+              #1778c2
+            );
+            transition: all 0.4s; */
+            border-radius: 5px;
+            cursor: pointer;
+            border-color: #61616138;
+            color: black;
+          "
+          class="sBtn"
+        >
+          حفظ
+        </button>
+        <p id="problem-status-result"></p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        تم تطوير نظام تلقي شكاوي الجامعه تحت اشراف
+        <span style="font-weight: 670">أ.م.د / أحمد العشري</span> و فريق عمل من
+        طلاب كليه الحاسبات و المعلومات
+        <span style="font-weight: 670"
+          >أحمد طارق - منه سالم - روان مطر - شهد محمد</span
+        >&nbsp;&nbsp;&copy;
+      </p>
+    </footer>
+
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          document.getElementById("popup").style.display = "flex";
+          document.querySelector(".container").classList.add("blur-background");
+        });
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        document
+          .querySelector(".container")
+          .classList.remove("blur-background");
+      }
+
+      function openFollowUpPopup() {
+        document.getElementById("follow-up-popup").style.display = "flex";
+        document.querySelector(".container").classList.add("blur-background");
+      }
+
+      function closeFollowUpPopup() {
+        document.getElementById("follow-up-popup").style.display = "none";
+        document
+          .querySelector(".container")
+          .classList.remove("blur-background");
+      }
+
+      function checkProblemStatus() {
+        const problemId = document.getElementById("problem-id-input").value;
+        // Simulating problem status check. In a real application, you would make an AJAX request here.
+        const status = problemId === "1234" ? "قيد المراجعة" : "غير موجود";
+        document.getElementById(
+          "problem-status-result"
+        ).innerText = ` حالة الشكوى: ${status}`;
+        document.querySelector("#follow-up-popup button").style.display =
+          "none";
+      }
+    </script>
+  </body>
+</html>
